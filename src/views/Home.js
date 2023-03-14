@@ -1,8 +1,6 @@
-import "./App.css";
-
-function App() {
+const Home = () => {
   return (
-    <div className="App">
+    <>
       <p>ubunto</p>
       <p className="font-secondaryLogoText text-large text-transparent secondLogoStroke">
         LANDRUP
@@ -10,8 +8,8 @@ function App() {
       <p className="font-primaryLogoText text-logoLarge text-logoText leading-4 logoStroke">
         DANS
       </p>
-    </div>
+    </>
   );
-}
+};
 
-export default App;
+export default Home;
