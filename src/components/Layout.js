@@ -1,24 +1,11 @@
-import { NavLink, Outlet } from "react-router-dom";
-import { BsHouseDoor } from "react-icons/bs";
-import { BiSearch } from "react-icons/bi";
-import { GrCalendar } from "react-icons/gr";
+import { Outlet } from "react-router-dom";
+import Navigation from "./Navigation";
 
 export default function Layout() {
   return (
     <>
       <header>
-        <nav>
-          <NavLink to="/">
-            <BsHouseDoor />
-          </NavLink>
-          <NavLink to="/search">
-            <BiSearch />
-          </NavLink>
-          <NavLink to="/calendar">
-            <GrCalendar />
-          </NavLink>
-          <NavLink to="/activity">activity</NavLink>
-        </nav>
+        <Navigation />
       </header>
       <main>
         <Outlet />
