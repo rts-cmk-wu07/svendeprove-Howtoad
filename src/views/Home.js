@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Home = () => {
   return (
     <>
@@ -8,6 +10,12 @@ const Home = () => {
       <p className="font-primaryLogoText text-logoLarge text-logoText leading-4 logoStroke">
         DANS
       </p>
+      <div>
+        <button className="buttonStyle mb-10 mt-10">Button</button>
+      </div>
+      <Link to="/home" className="buttonStyle">
+        Link
+      </Link>
     </>
   );
 };

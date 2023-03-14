@@ -20,3 +20,7 @@
   -webkit-text-stroke: 1px #431567;
   text-stroke: 1px #431567;
 }
+
+.buttonStyle {
+  @apply max-w-[249px] h-14 text-tertiaryText bg-primaryBG block w-full rounded-lg text-center;
+}
