@@ -1,3 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Ubuntu", sans-serif;
+  }
+}
+
+.logoStroke {
+  /* Add a stroke with a width of 1px, color black */
+  -webkit-text-stroke: 1px #000000;
+  text-stroke: 1px #000000;
+}
+.secondLogoStroke {
+  /* Add a stroke with a width of 1px, color purple */
+  -webkit-text-stroke: 1px #431567;
+  text-stroke: 1px #431567;
+}
