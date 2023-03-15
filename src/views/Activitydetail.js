@@ -67,7 +67,7 @@ const Activitydetail = () => {
               alt="of activity"
               className="w-[411px] h-[489px] object-cover object-center"
             ></img>
-            {token && (
+            {token && token.role === "default" && (
               <button
                 className="buttonStyle absolute right-7 bottom-5"
                 onClick={joined ? userLeave : userJoin}
