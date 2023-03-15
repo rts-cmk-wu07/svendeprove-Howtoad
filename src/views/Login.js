@@ -2,29 +2,53 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { TokenContext } from "../context/TokenProvider";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const { setToken } = useContext(TokenContext);
   const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
+  const validateForm = () => {
+    if (username.trim() === "" || password.trim() === "") {
+      toast.error("Udfyld venligst både brugernavn og adgangskode");
+      return false;
+    }
+    return true;
+  };
+
   async function handleLogin(event) {
     event.preventDefault();
-    setIsLoggingIn(true);
-    try {
+
+    if (!validateForm()) {
+      return;
+    }
+
+    const loginPromise = async () => {
       const response = await axios.post("http://localhost:4000/auth/token", {
-        username: event.target.username.value,
-        password: event.target.password.value,
+        username,
+        password,
       });
+
       if (response.status === 200) {
         setToken(response.data);
         console.log(response.data);
-        setIsLoggingIn(false);
         navigate("/calendar");
       }
-    } catch (error) {
-      setIsLoggingIn(false);
-      console.log(error);
-    }
+    };
+
+    toast.promise(loginPromise(), {
+      pending: "Logger ind...",
+      success: {
+        render: () => {
+          return "";
+        },
+      },
+      error: "Brugernavn eller kodeord er forkert",
+    });
   }
 
   return (
@@ -36,6 +60,7 @@ const Login = () => {
         backgroundPosition: "center",
       }}
     >
+      <ToastContainer />
       <div className=" max-w-[332px] absolute z-40 left-10 mt-[220px]">
         <h1 className="text-xLarge text-primaryHeading ">Log ind</h1>
 
@@ -46,6 +71,8 @@ const Login = () => {
               placeholder="Brugernavn"
               name="username"
               className="w-[332px] h-[50px] pl-5 placeholder-placeholderText"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </label>
           <label>
@@ -54,6 +81,8 @@ const Login = () => {
               placeholder="adgangskode"
               name="password"
               className="w-[332px] h-[50px] pl-5 placeholder-placeholderText mt-4"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </label>
           <button type="submit" className="buttonStyle mx-auto mt-8">
