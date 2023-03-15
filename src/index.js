@@ -44,7 +44,7 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: "/activity",
+        path: "/activity/:id",
         element: (
           <ProtectedRoute>
             <Activity />
