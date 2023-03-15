@@ -25,37 +25,39 @@ const Login = () => {
 
   return (
     <div
-      className="w-full h-screen"
+      className="w-full h-screen pt-[135px]"
       style={{
         backgroundImage: `url('/images/splash-image.jpg')`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      <div className="mx-auto max-w-[332px]">
-        <h1 className="text-xLarge text-primaryHeading">Log ind</h1>
+      <div className="w-[756px] h-[480px] bg-weirdBG  rotate-[-27deg] ml-[-190px] pt-[130px]">
+        <div className=" max-w-[332px] rotate-[27deg] ml-[220px]">
+          <h1 className="text-xLarge text-primaryHeading">Log ind</h1>
 
-        <form onSubmit={handleLogin} className="grid">
-          <label>
-            <input
-              type="text"
-              placeholder="Brugernavn"
-              name="username"
-              className="w-[332px] h-[50px] pl-5 placeholder-placeholderText"
-            />
-          </label>
-          <label>
-            <input
-              type="password"
-              placeholder="adgangskode"
-              name="password"
-              className="w-[332px] h-[50px] pl-5 placeholder-placeholderText mt-4"
-            />
-          </label>
-          <button type="submit" className="buttonStyle mx-auto mt-8">
-            Log ind
-          </button>
-        </form>
+          <form onSubmit={handleLogin} className="grid">
+            <label>
+              <input
+                type="text"
+                placeholder="Brugernavn"
+                name="username"
+                className="w-[332px] h-[50px] pl-5 placeholder-placeholderText"
+              />
+            </label>
+            <label>
+              <input
+                type="password"
+                placeholder="adgangskode"
+                name="password"
+                className="w-[332px] h-[50px] pl-5 placeholder-placeholderText mt-4"
+              />
+            </label>
+            <button type="submit" className="buttonStyle mx-auto mt-8">
+              Log ind
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
