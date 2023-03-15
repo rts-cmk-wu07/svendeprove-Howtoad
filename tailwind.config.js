@@ -20,6 +20,7 @@ module.exports = {
         secondaryText: "#FFFFFF",
         tertiaryText: "#E9E9E9",
         primaryBG: "#5E2E53",
+        weirdBG: "#5E2E5350",
         secondaryBG: "#E9E9E9",
         cardBG: "#E1A1E980",
         searchBG: "#C4C4C430",
