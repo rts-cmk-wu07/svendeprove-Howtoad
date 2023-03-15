@@ -2,6 +2,9 @@ import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { TokenContext } from "../context/TokenProvider";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Activitydetail = () => {
   const [data, setData] = useState();
   const [joined, setJoined] = useState(false);
@@ -56,9 +59,26 @@ const Activitydetail = () => {
       console.error("Error removing user from activity:", error);
     }
   };
+  const getDayOfWeek = () => {
+    const weekdays = [
+      "søndag",
+      "mandag",
+      "tirsdag",
+      "onsdag",
+      "torsdag",
+      "fredag",
+      "lørdag",
+    ];
+    const today = new Date();
+    return weekdays[today.getDay()];
+  };
+  const notify = () => {
+    toast.error("You can't join an activity on the same day");
+  };
 
   return (
     <div className="w-full bg-primaryBG h-screen">
+      <ToastContainer />
       {data ? (
         <div>
           <div className="relative">
@@ -68,12 +88,22 @@ const Activitydetail = () => {
               className="w-[411px] h-[489px] object-cover object-center"
             ></img>
             {token && token.role === "default" && (
-              <button
-                className="buttonStyle absolute right-7 bottom-5"
-                onClick={joined ? userLeave : userJoin}
-              >
-                {joined ? "Afmeld" : "Tilmeld"}
-              </button>
+              <>
+                {data.weekday && (
+                  <button
+                    className={`buttonStyle absolute right-7 bottom-5`}
+                    onClick={
+                      data.weekday === getDayOfWeek()
+                        ? notify
+                        : joined
+                        ? userLeave
+                        : userJoin
+                    }
+                  >
+                    {joined ? "Afmeld" : "Tilmeld"}
+                  </button>
+                )}
+              </>
             )}
           </div>
           <div className="text-secondaryText mx-7 mt-6">
