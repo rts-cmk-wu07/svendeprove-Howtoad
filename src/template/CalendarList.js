@@ -7,18 +7,33 @@ const CalendarList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:4000/api/v1/users/${token.userId}`,
-          {
-            headers: { Authorization: `Bearer ${token.token}` },
-          }
-        );
-        setUserData(response.data);
-        console.log(response.data);
+        if (token.role === "instructor") {
+          const response = await axios.get(
+            "http://localhost:4000/api/v1/activities",
+            {
+              headers: { Authorization: `Bearer ${token.token}` },
+            }
+          );
+
+          const instructorActivities = response.data.filter(
+            (activity) => activity.instructorId === token.userId
+          );
+
+          setUserData({ ...userData, activities: instructorActivities });
+        } else {
+          const response = await axios.get(
+            `http://localhost:4000/api/v1/users/${token.userId}`,
+            {
+              headers: { Authorization: `Bearer ${token.token}` },
+            }
+          );
+          setUserData(response.data);
+        }
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
     };
+
     if (token) {
       fetchData();
     }
@@ -28,7 +43,7 @@ const CalendarList = () => {
       {userData ? (
         <div>
           {userData.activities.map((activity) => (
-            <div className="max-w-[356px] h-[107px] w-full bg-primaryHeading px-8 rounded-[11px] pt-2">
+            <div className="max-w-[356px] h-[107px] w-full bg-primaryHeading px-8 rounded-[11px] pt-2 mb-7">
               <h2 key={activity.id} className="text-large w-[300px] truncate">
                 {activity.name}
               </h2>
