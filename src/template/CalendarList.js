@@ -63,7 +63,7 @@ const CalendarList = () => {
           ))}
         </div>
       ) : (
-        <p>Loading user data...</p>
+        <p className="text-medium text-primaryHeading">Kalender tom</p>
       )}
     </div>
   );

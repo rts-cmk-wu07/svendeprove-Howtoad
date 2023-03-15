@@ -11,7 +11,7 @@ const ActivityCard = ({ activity }) => {
         <div className="pt-5 pl-6 text-small bg-cardBG rounded-bl-[39px] rounded-tr-[39px] h-[28%] absolute bottom-0 w-full">
           <p>{activity.name}</p>
           <p>
-            {activity.minAge} - {activity.maxAge}
+            {activity.minAge} - {activity.maxAge} år
           </p>
         </div>
       </Link>

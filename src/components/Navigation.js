@@ -8,7 +8,7 @@ const Navigation = () => {
     <>
       <nav className="z-10 flex fixed w-screen justify-between items-center px-7  bottom-0 bg-secondaryBG h-14">
         <div className="flex items-center justify-center rounded-full border border-black p-1 w-[41px] h-[41px]">
-          <NavLink to="/">
+          <NavLink to="/activities">
             <BsHouseDoor size={24} />
           </NavLink>
         </div>
