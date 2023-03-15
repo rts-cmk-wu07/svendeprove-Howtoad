@@ -1,13 +1,15 @@
 import axios from "axios";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { TokenContext } from "../context/TokenProvider";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { setToken } = useContext(TokenContext);
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
   const navigate = useNavigate();
   async function handleLogin(event) {
     event.preventDefault();
+    setIsLoggingIn(true);
     try {
       const response = await axios.post("http://localhost:4000/auth/token", {
         username: event.target.username.value,
@@ -15,10 +17,12 @@ const Login = () => {
       });
       if (response.status === 200) {
         setToken(response.data);
-        console.log(response.data.role);
+        console.log(response.data);
+        setIsLoggingIn(false);
         navigate("/calendar");
       }
     } catch (error) {
+      setIsLoggingIn(false);
       console.log(error);
     }
   }
