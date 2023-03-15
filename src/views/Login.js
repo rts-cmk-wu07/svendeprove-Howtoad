@@ -29,40 +29,39 @@ const Login = () => {
 
   return (
     <div
-      className="w-full h-screen pt-[135px]"
+      className="w-full h-screen"
       style={{
         backgroundImage: `url('/images/splash-image.jpg')`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      <div className="w-[756px] h-[480px] bg-weirdBG  rotate-[-27deg] ml-[-190px] pt-[130px]">
-        <div className=" max-w-[332px] rotate-[27deg] ml-[220px]">
-          <h1 className="text-xLarge text-primaryHeading">Log ind</h1>
+      <div className=" max-w-[332px] absolute z-40 left-10 mt-[240px]">
+        <h1 className="text-xLarge text-primaryHeading ">Log ind</h1>
 
-          <form onSubmit={handleLogin} className="grid">
-            <label>
-              <input
-                type="text"
-                placeholder="Brugernavn"
-                name="username"
-                className="w-[332px] h-[50px] pl-5 placeholder-placeholderText"
-              />
-            </label>
-            <label>
-              <input
-                type="password"
-                placeholder="adgangskode"
-                name="password"
-                className="w-[332px] h-[50px] pl-5 placeholder-placeholderText mt-4"
-              />
-            </label>
-            <button type="submit" className="buttonStyle mx-auto mt-8">
-              Log ind
-            </button>
-          </form>
-        </div>
+        <form onSubmit={handleLogin} className="grid">
+          <label>
+            <input
+              type="text"
+              placeholder="Brugernavn"
+              name="username"
+              className="w-[332px] h-[50px] pl-5 placeholder-placeholderText"
+            />
+          </label>
+          <label>
+            <input
+              type="password"
+              placeholder="adgangskode"
+              name="password"
+              className="w-[332px] h-[50px] pl-5 placeholder-placeholderText mt-4"
+            />
+          </label>
+          <button type="submit" className="buttonStyle mx-auto mt-8">
+            Log ind
+          </button>
+        </form>
       </div>
+      <div className="w-[756px] h-[480px] bg-weirdBG rotate-[-27deg] ml-[-190px] pt-[130px] absolute top-[17%]"></div>
     </div>
   );
 };
