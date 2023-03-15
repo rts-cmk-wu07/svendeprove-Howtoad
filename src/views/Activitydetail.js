@@ -41,6 +41,7 @@ const Activitydetail = () => {
         }
       );
       setJoined(true);
+      toast.success(`Vi ses på ${data.weekday}!`);
     } catch (error) {
       console.error("Error enrolling user:", error);
     }
@@ -55,6 +56,7 @@ const Activitydetail = () => {
         }
       );
       setJoined(false);
+      toast.warn("Du er nu afmeldt");
     } catch (error) {
       console.error("Error removing user from activity:", error);
     }
@@ -72,7 +74,7 @@ const Activitydetail = () => {
     const today = new Date();
     return weekdays[today.getDay()];
   };
-  const notify = () => {
+  const dayError = () => {
     toast.error("You can't join an activity on the same day");
   };
 
@@ -94,7 +96,7 @@ const Activitydetail = () => {
                     className={`buttonStyle absolute right-7 bottom-5`}
                     onClick={
                       data.weekday === getDayOfWeek()
-                        ? notify
+                        ? dayError
                         : joined
                         ? userLeave
                         : userJoin
