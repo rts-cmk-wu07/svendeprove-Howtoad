@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { TokenContext } from "../context/TokenProvider";
+import { Link } from "react-router-dom";
 const CalendarList = () => {
   const [userData, setUserData] = useState(null);
   const { token } = useContext(TokenContext);
@@ -43,14 +44,22 @@ const CalendarList = () => {
       {userData ? (
         <div>
           {userData.activities.map((activity) => (
-            <div className="max-w-[356px] h-[107px] w-full bg-primaryHeading px-8 rounded-[11px] pt-2 mb-7">
-              <h2 key={activity.id} className="text-large w-[300px] truncate">
-                {activity.name}
-              </h2>
-              <p>
-                {activity.weekday} {activity.time}
-              </p>
-            </div>
+            <Link
+              to={
+                token.role === "default"
+                  ? `/activitydetail/${activity.id}`
+                  : `/activity/${activity.id}`
+              }
+            >
+              <div className="max-w-[356px] h-[107px] w-full bg-primaryHeading px-8 rounded-[11px] pt-2 mb-7">
+                <h2 key={activity.id} className="text-large w-[300px] truncate">
+                  {activity.name}
+                </h2>
+                <p>
+                  {activity.weekday} {activity.time}
+                </p>
+              </div>
+            </Link>
           ))}
         </div>
       ) : (
