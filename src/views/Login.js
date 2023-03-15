@@ -36,7 +36,7 @@ const Login = () => {
         backgroundPosition: "center",
       }}
     >
-      <div className=" max-w-[332px] absolute z-40 left-10 mt-[240px]">
+      <div className=" max-w-[332px] absolute z-40 left-10 mt-[220px]">
         <h1 className="text-xLarge text-primaryHeading ">Log ind</h1>
 
         <form onSubmit={handleLogin} className="grid">
