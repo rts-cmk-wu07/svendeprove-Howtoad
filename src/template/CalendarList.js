@@ -38,7 +38,7 @@ const CalendarList = () => {
     if (token) {
       fetchData();
     }
-  }, [token, userData]);
+  }, [token]);
   return (
     <div>
       {userData ? (
