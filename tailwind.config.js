@@ -22,7 +22,7 @@ module.exports = {
         primaryBG: "#5E2E53",
         weirdBG: "#5E2E5350",
         secondaryBG: "#E9E9E9",
-        cardBG: "#E1A1E980",
+        cardBG: "#E1A1E999",
         searchBG: "#C4C4C430",
         logoText: "#E856EB",
         primaryLogoStroke: "#000000",

@@ -11,7 +11,7 @@ const Activities = () => {
       .catch((error) => console.log(error));
   }, []);
   return (
-    <div className="px-7 bg-primaryBG w-screen pt-8">
+    <div className="px-7 bg-primaryBG w-screen pt-8 ">
       <h1 className="text-primaryHeading text-large mb-5 ml-2">Aktiviteter</h1>
       <div className="pb-10">
         {activities.map((activity) => (
