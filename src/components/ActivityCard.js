@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 const ActivityCard = ({ activity }) => {
   return (
     <div className="relative mb-8">
-      <Link to={`/activitydetail/${activity.id}`}>
+      <Link to={`/aktivitetsdetaljer/${activity.id}`}>
         <img
           src={activity.asset.url}
           className="object-cover object-center w-[356px] h-[344px] rounded-[39px] rounded-br-none"

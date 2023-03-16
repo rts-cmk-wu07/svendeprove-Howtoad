@@ -75,7 +75,9 @@ const Activitydetail = () => {
     return weekdays[today.getDay()];
   };
   const dayError = () => {
-    toast.error("You can't join an activity on the same day");
+    toast.error(
+      "Du kan ikke tilmelde dig en klasse på samme dag den tager sted"
+    );
   };
 
   return (
@@ -111,7 +113,7 @@ const Activitydetail = () => {
           <div className="text-secondaryText mx-7 mt-6">
             <h1 className="text-medium leading-6">{data.name}</h1>
             <h2 className="text-small">
-              {data.minAge} - {data.maxAge}
+              {data.minAge} - {data.maxAge} år
             </h2>
             <p className="text-small mb-3">
               {data.weekday} {data.time}
