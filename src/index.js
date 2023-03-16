@@ -23,20 +23,20 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/activities",
+        path: "/aktiviteter",
         element: <Activities />,
       },
       {
-        path: "/activitydetail/:id",
+        path: "/aktivitetsdetaljer/:id",
         element: <Activitydetail />,
       },
       {
-        path: "/calendar",
+        path: "/kalender",
         element: <Calendar />,
       },
 
       {
-        path: "/search",
+        path: "/søg",
         element: <Search />,
       },
       {

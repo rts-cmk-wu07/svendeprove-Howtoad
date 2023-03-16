@@ -47,7 +47,7 @@ const CalendarList = () => {
             <Link
               to={
                 token.role === "default"
-                  ? `/activitydetail/${activity.id}`
+                  ? `/aktivitetsdetaljer/${activity.id}`
                   : `/activity/${activity.id}`
               }
             >

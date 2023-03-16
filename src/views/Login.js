@@ -36,7 +36,7 @@ const Login = () => {
       if (response.status === 200) {
         setToken(response.data);
         console.log(response.data);
-        navigate("/calendar");
+        navigate("/kalender");
       }
     };
 

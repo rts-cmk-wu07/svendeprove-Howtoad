@@ -36,7 +36,7 @@ const Home = () => {
         animate="visible"
         className="absolute bottom-20 self-center"
       >
-        <Link to="/activities" className="buttonStyle pt-3.5 px-20">
+        <Link to="/aktiviteter" className="buttonStyle pt-3.5 px-20">
           Kom i gang
         </Link>
       </motion.div>
