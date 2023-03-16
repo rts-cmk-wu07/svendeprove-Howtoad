@@ -8,8 +8,10 @@ import "react-toastify/dist/ReactToastify.css";
 const Activitydetail = () => {
   const [data, setData] = useState();
   const [joined, setJoined] = useState(false);
+  const [loading, setLoading] = useState(true);
   const { id } = useParams();
   const { token } = useContext(TokenContext);
+  const errorToastId = "error-toast-id";
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,6 +20,7 @@ const Activitydetail = () => {
           `http://localhost:4000/api/v1/activities/${id}`
         );
         setData(response.data);
+        setLoading(false);
         if (token) {
           setJoined(
             response.data.users.some((user) => user.id === token.userId)
@@ -25,7 +28,13 @@ const Activitydetail = () => {
         }
         console.log(response.data);
       } catch (error) {
+        setLoading(false);
         console.error("Error fetching activity data:", error);
+        if (!toast.isActive(errorToastId)) {
+          toast.error("Fejl på serveren, prøv igen senere", {
+            toastId: errorToastId,
+          });
+        }
       }
     };
     fetchData();
@@ -95,7 +104,7 @@ const Activitydetail = () => {
   return (
     <div className="w-full bg-primaryBG h-screen">
       <ToastContainer />
-      {data ? (
+      {!loading && data ? (
         <div>
           <div className="relative">
             <img
@@ -133,8 +142,12 @@ const Activitydetail = () => {
             <p className="text-small">{data.description}</p>
           </div>
         </div>
-      ) : (
+      ) : loading ? (
         <p>loading data...</p>
+      ) : (
+        <p className="text-primaryHeading text-large">
+          Der opstod en fejl på serveren, prøv igen senere
+        </p>
       )}
     </div>
   );
