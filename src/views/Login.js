@@ -4,13 +4,14 @@ import { TokenContext } from "../context/TokenProvider";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import useCookie from "react-use-cookie";
 
 const Login = () => {
   const { setToken } = useContext(TokenContext);
-  const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [tokenCookie, setTokenCookie] = useCookie("login-cookie", "");
 
   const validateForm = () => {
     if (username.trim() === "" || password.trim() === "") {
@@ -34,6 +35,12 @@ const Login = () => {
       });
 
       if (response.status === 200) {
+        const msDate = response.data.validUntil - Date.now();
+        const validFor = msDate / 1000 / 60 / 60 / 24;
+        setTokenCookie(JSON.stringify(response.data), {
+          days: validFor,
+          SameSite: "Strict",
+        });
         setToken(response.data);
         console.log(response.data);
         navigate("/kalender");
