@@ -33,15 +33,27 @@ const Activitydetail = () => {
 
   const userJoin = async () => {
     try {
-      await axios.post(
-        `http://localhost:4000/api/v1/users/${token.userId}/activities/${id}`,
-        {},
+      const userResponse = await axios.get(
+        `http://localhost:4000/api/v1/users/${token.userId}`,
         {
           headers: { Authorization: `Bearer ${token.token}` },
         }
       );
-      setJoined(true);
-      toast.success(`Vi ses på ${data.weekday}!`);
+      const userAge = userResponse.data.age;
+
+      if (userAge >= data.minAge && userAge <= data.maxAge) {
+        await axios.post(
+          `http://localhost:4000/api/v1/users/${token.userId}/activities/${id}`,
+          {},
+          {
+            headers: { Authorization: `Bearer ${token.token}` },
+          }
+        );
+        setJoined(true);
+        toast.success(`Vi ses på ${data.weekday}!`);
+      } else {
+        toast.error("Din alder er udenfor aldersgrænsen for denne aktivitet");
+      }
     } catch (error) {
       console.error("Error enrolling user:", error);
     }
@@ -97,14 +109,14 @@ const Activitydetail = () => {
                   <button
                     className={`buttonStyle absolute right-7 bottom-5`}
                     onClick={
-                      data.weekday === getDayOfWeek()
-                        ? dayError
-                        : joined
+                      joined
                         ? userLeave
+                        : data.weekday === getDayOfWeek()
+                        ? dayError
                         : userJoin
                     }
                   >
-                    {joined ? "Afmeld" : "Tilmeld"}
+                    {joined ? "Forlad" : "Tilmeld"}
                   </button>
                 )}
               </>
