@@ -1,6 +1,17 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const Home = () => {
+  const linkVariants = {
+    hidden: { opacity: 0, scale: 0.5 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 1.5,
+      },
+    },
+  };
   return (
     <div
       className="h-screen flex flex-col justify-center"
@@ -19,12 +30,16 @@ const Home = () => {
         </p>
         <div className="max-w-[242px] w-full h-[15px] bg-logoBar"></div>
       </div>
-      <Link
-        to="/activities"
-        className="buttonStyle pt-3 absolute bottom-20 self-center"
+      <motion.div
+        variants={linkVariants}
+        initial="hidden"
+        animate="visible"
+        className="absolute bottom-20 self-center"
       >
-        Kom i gang
-      </Link>
+        <Link to="/activities" className="buttonStyle pt-3.5 px-20">
+          Kom i gang
+        </Link>
+      </motion.div>
     </div>
   );
 };
