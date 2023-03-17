@@ -24,3 +24,11 @@
 .buttonStyle {
   @apply max-w-[249px] h-14 text-tertiaryText bg-primaryBG block w-full rounded-lg text-center;
 }
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

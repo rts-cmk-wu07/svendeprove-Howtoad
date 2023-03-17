@@ -28,7 +28,7 @@ const Activities = () => {
     <div className="px-7 bg-primaryBG w-screen pt-8 min-h-screen ">
       <ToastContainer />
       <h1 className="text-primaryHeading text-large mb-5 ml-2">Aktiviteter</h1>
-      <div className="pb-10">
+      <div className=" max-h-[80vh] overflow-y-scroll scrollbar-hide">
         {!loading ? (
           activities.map((activity) => (
             <ActivityCard key={activity.id} activity={activity} />
