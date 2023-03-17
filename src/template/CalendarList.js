@@ -39,9 +39,11 @@ const CalendarList = () => {
       fetchData();
     }
   }, [token]);
+  const hasActivities =
+    userData && userData.activities && userData.activities.length > 0;
   return (
     <div>
-      {userData ? (
+      {hasActivities ? (
         <div>
           {userData.activities.map((activity) => (
             <Link
