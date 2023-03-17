@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Search = () => {
   const [activities, setActivities] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const errorToastId = "error-toast-id";
   useEffect(() => {
@@ -22,6 +23,15 @@ const Search = () => {
         }
       });
   }, []);
+  const filteredActivities = activities.filter(
+    (activity) =>
+      activity.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      activity.weekday.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
   return (
     <div className="w-full bg-primaryBG px-7 min-h-screen">
       <ToastContainer />
@@ -31,6 +41,8 @@ const Search = () => {
           <input
             type="text"
             className="max-w-[356px] w-full h-12 opacity-30 pl-3"
+            value={searchTerm}
+            onChange={handleSearch}
           />
           <div className="absolute right-2 top-3 text-primaryHeading">
             <BiSearch size={24} />
@@ -38,9 +50,16 @@ const Search = () => {
         </div>
       </div>
       <div className="pb-10">
-        {activities.map((activity) => (
-          <ActivityCard key={activity.id} activity={activity} />
-        ))}
+        {searchTerm === "" ? null : filteredActivities.length === 0 ? (
+          <p className="text-medium text-primaryHeading">
+            Der blev ikke fundet nogle aktiviteter. Prøv at søge efter noget
+            andet.
+          </p>
+        ) : (
+          filteredActivities.map((activity) => (
+            <ActivityCard key={activity.id} activity={activity} />
+          ))
+        )}
       </div>
     </div>
   );
