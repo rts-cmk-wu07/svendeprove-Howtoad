@@ -76,6 +76,38 @@ Npm run start
             )}
 ```
 
+# Code example to dicuss
+
+```
+const userJoin = async () => {
+    try {
+      const userResponse = await axios.get(
+        `http://localhost:4000/api/v1/users/${token.userId}`,
+        {
+          headers: { Authorization: `Bearer ${token.token}` },
+        }
+      );
+      const userAge = userResponse.data.age;
+
+      if (userAge >= data.minAge && userAge <= data.maxAge) {
+        await axios.post(
+          `http://localhost:4000/api/v1/users/${token.userId}/activities/${id}`,
+          {},
+          {
+            headers: { Authorization: `Bearer ${token.token}` },
+          }
+        );
+        setJoined(true);
+        toast.success(`Vi ses på ${data.weekday}!`);
+      } else {
+        toast.error("Din alder er udenfor aldersgrænsen for denne aktivitet");
+      }
+    } catch (error) {
+      console.error("Error enrolling user:", error);
+    }
+  };
+```
+
 # Design changes
 
 ## The design lacked a way to navigate to the login page. So I chose to change the calendar icon to a login icon, when the user isnt logged in. Once the user is logged in, a log out icon will appear in the top right side of the site.
