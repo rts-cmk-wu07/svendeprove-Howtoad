@@ -12,6 +12,7 @@ import Calendar from "./views/Calendar";
 import Activity from "./views/Activity";
 import TokenProvider from "./context/TokenProvider";
 import ProtectedRoute from "./components/ProtectedRoute";
+import NotFound from "./views/NotFound";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
             <Activity />
           </ProtectedRoute>
         ),
+      },
+      {
+        path: "*",
+        element: <NotFound />,
       },
     ],
   },
