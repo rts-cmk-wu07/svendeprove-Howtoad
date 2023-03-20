@@ -52,6 +52,7 @@ const CalendarList = () => {
                   ? `/aktivitetsdetaljer/${activity.id}`
                   : `/activity/${activity.id}`
               }
+              key={activity.id}
             >
               <div className="max-w-[356px] h-[107px] w-full bg-primaryHeading px-8 rounded-[11px] pt-2 mb-7">
                 <h2 key={activity.id} className="text-large w-[300px] truncate">

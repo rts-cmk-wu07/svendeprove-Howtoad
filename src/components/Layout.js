@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Layout() {
   const navigate = useNavigate();
-  const { token, setToken } = useContext(TokenContext);
+  const { token, setToken, setTokenCookie } = useContext(TokenContext);
   const location = useLocation();
 
   const shouldHideNavigation = () => {
@@ -16,6 +16,7 @@ export default function Layout() {
   };
   const handleLogout = () => {
     setToken(null);
+    setTokenCookie("", { expires: -1 });
     navigate("/");
   };
   return (

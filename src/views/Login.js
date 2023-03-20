@@ -10,6 +10,7 @@ const Login = () => {
   const { setToken } = useContext(TokenContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
   const [tokenCookie, setTokenCookie] = useCookie("login-cookie", "");
 
@@ -37,10 +38,12 @@ const Login = () => {
       if (response.status === 200) {
         const msDate = response.data.validUntil - Date.now();
         const validFor = msDate / 1000 / 60 / 60 / 24;
-        setTokenCookie(JSON.stringify(response.data), {
-          days: validFor,
-          SameSite: "Strict",
-        });
+        if (rememberMe) {
+          setTokenCookie(JSON.stringify(response.data), {
+            days: validFor,
+            SameSite: "Strict",
+          });
+        }
         setToken(response.data);
         console.log(response.data);
         navigate("/kalender");
@@ -92,6 +95,15 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
+            </label>
+            <label className="flex items-center mt-4">
+              <input
+                type="checkbox"
+                className="mr-2"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+              />
+              Husk mig
             </label>
             <button type="submit" className="buttonStyle mx-auto mt-8">
               Log ind
