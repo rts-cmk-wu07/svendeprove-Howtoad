@@ -45,7 +45,6 @@ const Login = () => {
           });
         }
         setToken(response.data);
-        console.log(response.data);
         navigate("/kalender");
       }
     };

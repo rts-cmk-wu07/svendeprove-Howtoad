@@ -15,7 +15,6 @@ const Search = () => {
       .get("http://localhost:4000/api/v1/activities")
       .then((response) => setActivities(response.data))
       .catch((error) => {
-        console.log(error);
         if (!toast.isActive(errorToastId)) {
           toast.error("Fejl på serveren, prøv igen senere.", {
             toastId: errorToastId,
