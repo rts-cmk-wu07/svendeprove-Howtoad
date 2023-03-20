@@ -108,6 +108,10 @@ const userJoin = async () => {
   };
 ```
 
+# Scalability
+
+## All content the user interacts with is pulled from the api and built in a way to support future additions of dance classes, users etc. The code is built with reuseable components, and if the product is to become much larger, all axios requests can be codesplit into hooks for easier maintenance. If data fails to load the user is met with adequate error messages.
+
 # Design changes
 
 ## The design lacked a way to navigate to the login page. So I chose to change the calendar icon to a login icon, when the user isnt logged in. Once the user is logged in, a log out icon will appear in the top right side of the site.
