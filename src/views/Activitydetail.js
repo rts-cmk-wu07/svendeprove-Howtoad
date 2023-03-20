@@ -26,7 +26,6 @@ const Activitydetail = () => {
             response.data.users.some((user) => user.id === token.userId)
           );
         }
-        console.log(response.data);
       } catch (error) {
         setLoading(false);
         console.error("Error fetching activity data:", error);

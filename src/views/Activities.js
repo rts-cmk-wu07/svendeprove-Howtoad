@@ -15,7 +15,6 @@ const Activities = () => {
       .then((response) => setActivities(response.data))
       .then(() => setLoading(false))
       .catch((error) => {
-        console.log(error);
         setLoading(false);
         if (!toast.isActive(errorToastId)) {
           toast.error("Fejl på serveren, prøv igen senere.", {
